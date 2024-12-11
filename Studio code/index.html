@@ -5,6 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Styl pro burger menu */
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .burger-menu div {
+      width: 30px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .burger-menu.active div:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .burger-menu.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-menu.active div:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .burger-menu {
+        display: flex;
+      }
+    }
+    /* Styl pro projekty */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .project-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .project-card img {
+      width: 100%;
+      max-width: 300px; /* Maximalni šířka obrázku */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <!-- GSAP knihovna -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 </head>
 <body>
   <header>
@@ -13,7 +83,12 @@
       <h1>My Portfolio</h1>
     </div>
     <nav>
-      <ul>
+      <div class="burger-menu" id="burger-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul id="nav-links">
         <li><a href="#about">About Me</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -27,30 +102,43 @@
     </section>
     <section id="projects" class="projects">
       <h2>Projects</h2>
-      <div class="project-card">
-        <h3>Project 1</h3>
-        <p></p>
-      </div>
-      <div class="project-card">
-        <h3>Project 2</h3>
-        <p></p>
-      </div>
-      <div class="project-card">
-        <h3>Project 3</h3>
-        <p></p>
+      <div class="projects-container">
+        <div class="project-card" id="project1">
+          <h3>Project 1</h3>
+          <img src="obrázky/image-removebg-preview (2).png" alt="Vizitka Marek Merta">
+        </div>
+        <div class="project-card">
+          <h3>Project 2</h3>
+          <p></p>
+        </div>
+        <div class="project-card">
+          <h3>Project 3</h3>
+          <p></p>
+        </div>
       </div>
     </section>
     <section id="contact" class="contact">
       <h2>Contact Me</h2>
-      <p> <href>https://github.com/Mertic207</href></p>
-      <p></p>
+      <p><a href="https://github.com/Mertic207">https://github.com/Mertic207</a></p>
     </section>
   </main>
   <footer>
   </footer>
-
-</script>
- 
+  <script>
+    // JavaScript pro burger menu
+    const burgerMenu = document.getElementById('burger-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    burgerMenu.addEventListener('click', () => {
+      burgerMenu.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // GSAP animace
+    gsap.from(".intro h2", { duration: 1, x: -200, opacity: 0 });
+    gsap.from(".intro p", { duration: 1, x: 200, opacity: 0, delay: 0.5 });
+    gsap.from(".project-card", { duration: 1, y: 100, opacity: 0, stagger: 0.2, delay: 1 });
+  </script>
 </body>
 </html>
 
