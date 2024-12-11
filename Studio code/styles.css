@@ -83,6 +83,28 @@ body {
     }
   }
   
+  .projects {
+    display: flex;
+    gap: 20px; /* Mezera mezi kartami */
+  }
+  
+  .project-card {
+    flex: 1; /* Karty budou stejně široké */
+    max-width: 300px; /* Maximální šířka každé karty */
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* Mezera mezi kartami */
+  }
+
+  .projects {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Posouvání na menších obrazovkách */
+  }
+  
   
   
   

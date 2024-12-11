@@ -51,26 +51,19 @@
     }
     /* Styl pro projekty */
     .projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
       gap: 20px;
+      overflow-x: auto; /* Posouvání na menších obrazovkách */
     }
     .project-card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      box-sizing: border-box;
+      flex: 1;
+      max-width: 300px;
     }
     .project-card img {
       width: 100%;
-      max-width: 300px; /* Maximalni šířka obrázku */
       height: auto;
       display: block;
       margin: 0 auto;
-    }
-    @media (max-width: 768px) {
-      .projects {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
   <!-- GSAP knihovna -->
