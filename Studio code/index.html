@@ -6,7 +6,66 @@
   <title>My Portfolio</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Styl pro burger menu */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow: hidden;
+    }
+    #intro-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000305;
+      color: #fff;
+      z-index: 1000;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #007BFF;
+      color: #fff;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      width: 50px;
+      margin-right: 15px;
+    }
+    h1 {
+      margin: 0;
+    }
+    nav {
+      position: relative;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #f8f4f4;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #FFD700;
+    }
     .burger-menu {
       display: none;
       flex-direction: column;
@@ -15,7 +74,7 @@
     .burger-menu div {
       width: 30px;
       height: 3px;
-      background-color: #333;
+      background-color: #fff;
       margin: 5px;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
@@ -28,19 +87,13 @@
     .burger-menu.active div:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
-    nav ul {
-      display: flex;
-      list-style: none;
-    }
-    nav ul li {
-      margin: 0 15px;
-    }
     @media (max-width: 768px) {
       nav ul {
         display: none;
         flex-direction: column;
         width: 100%;
         text-align: center;
+        background-color: #007BFF;
       }
       nav ul.active {
         display: flex;
@@ -49,27 +102,80 @@
         display: flex;
       }
     }
-    /* Styl pro projekty */
+    main {
+      display: none;
+      padding: 20px;
+    }
+    section {
+      margin: 20px 0;
+    }
+    .intro {
+      text-align: center;
+      padding: 20px;
+      background: #070101;
+      border-radius: 8px;
+    }
     .projects {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      overflow-x: auto; /* Posouvání na menších obrazovkách */
+      padding: 20px;
     }
     .project-card {
-      flex: 1;
-      max-width: 300px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
     .project-card img {
       width: 100%;
       height: auto;
-      display: block;
-      margin: 0 auto;
+    }
+    .project-card h3 {
+      background-color: #007BFF;
+      color: #fff;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+    .project-card p {
+      padding: 10px;
+      text-align: center;
+    }
+    .contact {
+      text-align: center;
+      padding: 20px;
+      background: #050000;
+      border-radius: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
-  <!-- GSAP knihovna -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 </head>
 <body>
+  <div id="intro-screen">
+    <div class="logo-container">
+      <img src="obrázky/Snímek_obrazovky_2024-12-10_172932-removebg-preview.png" alt="My Logo" class="logo">
+      <h1>Marek Merta</h1>
+    </div>
+  </div>
   <header>
     <div class="logo-container">
       <img src="obrázky/Snímek_obrazovky_2024-12-10_172932-removebg-preview.png" alt="My Logo" class="logo">
@@ -91,47 +197,50 @@
   <main>
     <section id="about" class="intro">
       <h2>About Me</h2>
-      <p>Vítejte na mém portfoliu! Jmenuji se Marek Merta a jsem webový vývojář. Pracuji s HTML, CSS, JavaScriptem a moderními frameworky.</p>
+      <p>Welcome to my portfolio! My name is Marek Merta, and I am a web developer. I specialize in HTML, CSS, JavaScript, and modern frameworks.</p>
     </section>
     <section id="projects" class="projects">
       <h2>Projects</h2>
-      <div class="projects-container">
-        <div class="project-card" id="project1">
-          <h3>Project 1</h3>
-          <img src="obrázky/image-removebg-preview (2).png" alt="Vizitka Marek Merta">
-        </div>
-        <div class="project-card">
-          <h3>Project 2</h3>
-          <p></p>
-        </div>
-        <div class="project-card">
-          <h3>Project 3</h3>
-          <p></p>
-        </div>
+      <div class="project-card">
+        <h3>Project 1</h3>
+        <img src="obrázky/image-removebg-preview (2).png" alt="Project 1">
+        <p>A brief description of Project 1.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 2</h3>
+        <img src="obrazky/project2.png" alt="Project 2">
+        <p>A brief description of Project 2.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 3</h3>
+        <img src="obrazky/project3.png" alt="Project 3">
+        <p>A brief description of Project 3.</p>
       </div>
     </section>
     <section id="contact" class="contact">
       <h2>Contact Me</h2>
-      <p><a href="https://github.com/Mertic207">https://github.com/Mertic207</a></p>
+      <p>Feel free to reach out to me via <a href="https://github.com/Mertic207">GitHub</a> or through other channels.</p>
     </section>
   </main>
   <footer>
+    <p>&copy; 2024 Marek Merta. All rights reserved.</p>
   </footer>
   <script>
-    // JavaScript pro burger menu
     const burgerMenu = document.getElementById('burger-menu');
     const navLinks = document.getElementById('nav-links');
-    
+
     burgerMenu.addEventListener('click', () => {
       burgerMenu.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
-    
-    // GSAP animace
-    gsap.from(".intro h2", { duration: 1, x: -200, opacity: 0 });
-    gsap.from(".intro p", { duration: 1, x: 200, opacity: 0, delay: 0.5 });
-    gsap.from(".project-card", { duration: 1, y: 100, opacity: 0, stagger: 0.2, delay: 1 });
+
+    // Animace pro úvodní obrazovku
+    gsap.to("#intro-screen", { duration: 2, opacity: 0, display: "none", delay: 2 });
+    gsap.to("main", { duration: 2, display: "block", delay: 2 });
+    gsap.from("header", { duration: 1, y: -100, opacity: 0, delay: 3 });
+    gsap.from(".intro h2", { duration: 1, x: -200, opacity: 0, delay: 3.5 });
+    gsap.from(".intro p", { duration: 1, x: 200, opacity: 0, delay: 4 });
+    gsap.from(".project-card", { duration: 1, y: 100, opacity: 0, stagger: 0.2, delay: 5 });
   </script>
 </body>
 </html>
-
